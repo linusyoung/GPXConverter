@@ -2,7 +2,7 @@
 
 ## How to use
 
-run converter.py with input file(.gpx)
+Run converter.py with input file(.gpx)
 ```
 python ./converter.py -i [input file]
 ```
@@ -12,5 +12,6 @@ It will extract waypoints information from input file to a csv file with same fi
 
 ## XSD referenece documents
 GPX XSD is available at the below link.
+
 [http://www.topografix.com/GPX/1/1](http://www.topografix.com/gpx/1/1/gpx.xsd)
 
