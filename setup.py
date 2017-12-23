@@ -8,6 +8,8 @@ setup(
 
     license="MIT",
     url="https://github.com/linusyoung/GPXConverter",
+    download_url="""https://github.com/linusyoung/
+    GPXConverter/archive/0.2.tar.gz""",
 
     author="Linus Yang",
     author_email="linusyoungrice@gmail.com",
