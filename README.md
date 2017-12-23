@@ -5,7 +5,11 @@
 Run converter.py with input file(.gpx)
 ```
 python ./converter.py -i [input file]
+
+python ./converter.py -i [input file] -o [output file]
+
 ```
+*Note: 'csv' extention is not required for output filename.*
 
 ## Result
 It will extract waypoints information from input file to a csv file with same file name at the same location.
