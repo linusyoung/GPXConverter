@@ -1,2 +1,2 @@
 #__init__.py
-from GPXConverter import main
+#from GPXConverter import main
