@@ -1,14 +1,40 @@
-#setup.py
-from distutils.core import setup
+from setuptools import setup
+
 setup(
-  name = 'gpxconverter',
-  packages = ['gpxconverter'], # this must be the same as the name above
-  version = '0.1',
-  description = 'gpx to csv converter',
-  author = 'Linus Yang',
-  author_email = 'linusyoungrice@gmail.com',
-  url = 'https://github.com/linusyoung/GPXConverter', # use the URL to the github repo
-  download_url = 'https://github.com/linusyoung/GPXConverter/archive/0.1.tar.gz', # I'll explain this in a second
-  keywords = ['gpx', 'converter', 'csv'], # arbitrary keywords
-  classifiers = [],
+    name="gpxconverter",
+    version="0.2",
+
+    description="gpx to csv converter",
+
+    license="MIT",
+    url="https://github.com/linusyoung/GPXConverter",
+
+    author="Linus Yang",
+    author_email="linusyoungrice@gmail.com",
+
+    classifiers=[
+        "Natural Language :: English",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: POSIX",
+        "Operating System :: POSIX :: BSD",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: Microsoft :: Windows",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+    ],
+
+    packages=["gpxconverter"],
+
+    entry_points={
+        "console_scripts": [
+            "gpxconverter = gpxconverter.__main__:main",
+        ],
+    },
 )
