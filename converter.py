@@ -27,15 +27,20 @@ def main(argv):
 	xml_file = os.path.join(base_path, inputfile)
 	
 	if os.path.isfile(xml_file):
-		writeOutput(inputfile, xml_file)
+		writeOutput(inputfile, outputfile, xml_file)
 	else:
 		print inputfile + ' does not exist. please check file name and try again!'
 		sys.exit()
 
-def writeOutput(inputfile, xml_file):
+def writeOutput(inputfile, outputfile, xml_file):
 	row_count = 0
 	ext_index = re.search(r"\.", inputfile[::-1])
-	output_csv_file = inputfile[:-(ext_index.start()+1)] +'.csv'
+	
+	if outputfile:
+		output_csv_file = outputfile + '.csv'
+	else:
+		output_csv_file = inputfile[:-(ext_index.start()+1)] +'.csv'
+	
 	with open(output_csv_file, 'w') as csv_file:
 		fieldnames = ['lat','lon']
 		tree = et.parse(xml_file)
@@ -49,8 +54,8 @@ def writeOutput(inputfile, xml_file):
 				values.append(child.attrib["lon"])
 				elements = child.getchildren()
 				if head_empty:
-					headers = getHeader(elements)
-					fieldnames.extend(headers)
+					header = getHeader(elements)
+					fieldnames.extend(header)
 					writer = csv.DictWriter(csv_file, fieldnames)
 					writer.writeheader()
 					head_empty = False
@@ -60,15 +65,16 @@ def writeOutput(inputfile, xml_file):
 
 				row_value = dict(zip(fieldnames, values))
 				writer.writerow(row_value)
-				row_count = row_count + 1
+				row_count += 1
+	
 	print output_csv_file + ' is created with ' + str(row_count) + ' record(s).'
 	
 
 def getHeader(elements):
-	headers = []
+	header = []
 	for element in elements:
-		headers.append(re.sub(r"^{.*?}",'', element.tag))
-	return headers
+		header.append(re.sub(r"^{.*?}",'', element.tag))
+	return header
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
