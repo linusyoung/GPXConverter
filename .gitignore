@@ -1,4 +1,15 @@
-build
+*.py[co]
+
+# Packages
+*.egg
+*.egg-info
 dist
+build
+eggs
+parts
+bin
+var
 sdist
-gpxconverter.egg-info
+develop-eggs
+.installed.cfg
+_build
