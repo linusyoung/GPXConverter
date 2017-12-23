@@ -39,27 +39,38 @@ def writeOutput(inputfile, xml_file):
 	ext_index = re.search(r"\.", inputfile[::-1])
 	output_csv_file = inputfile[:-(ext_index.start()+1)] +'.csv'
 	with open(output_csv_file, 'w') as csv_file:
-		fieldnames = ['lat','lon','ele','time','name','sym']
-		writer = csv.DictWriter(csv_file, fieldnames)
-		writer.writeheader()
-
+		fieldnames = ['lat','lon']
 		tree = et.parse(xml_file)
-
 		root = tree.getroot()
+		head_empty = True
 
 		for child in root:
 			if re.search("wpt", child.tag):
-				lat = child.attrib["lat"]
-				lon = child.attrib["lon"]
+				values = []
+				values.append(child.attrib["lat"])
+				values.append(child.attrib["lon"])
 				elements = child.getchildren()
-				ele = elements[0].text
-				time = elements[1].text
-				name = elements[2].text
-				sym = elements[3].text
-				writer.writerow({'lat':lat, 'lon':lon, 'ele':ele, 'time':time, 'name':name, 'sym':sym})
+				if head_empty:
+					headers = getHeader(elements)
+					fieldnames.extend(headers)
+					writer = csv.DictWriter(csv_file, fieldnames)
+					writer.writeheader()
+					head_empty = False
+
+				for element in elements:
+					values.append(element.text)
+
+				row_value = dict(zip(fieldnames, values))
+				writer.writerow(row_value)
 				row_count = row_count + 1
 	print output_csv_file + ' is created with ' + str(row_count) + ' record(s).'
 	
+
+def getHeader(elements):
+	headers = []
+	for element in elements:
+		headers.append(re.sub(r"^{.*?}",'', element.tag))
+	return headers
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
