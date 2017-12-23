@@ -5,8 +5,6 @@ import xml.etree.ElementTree as et
 import csv
 import re
 
-# waypoints tags
-# ele, time, magvar, geoidheight, name, cmt, desc, src, link, sym, type, fix, sat, hdop, vdop, pdop, ageofdgpsdata, dgpsid
 def main(argv):
 	inputfile = ''
 	outputfile = ''
