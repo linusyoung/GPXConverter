@@ -1,18 +1,23 @@
 from setuptools import setup
 
+import gpxconverter as gpx
+
 setup(
-    name="gpxconverter",
-    version="0.4",
+    name=gpx.__title__,
 
-    description="gpx to csv converter",
+    version=gpx.__version__,
 
-    license="MIT",
-    url="https://github.com/linusyoung/GPXConverter",
-    download_url="""https://github.com/linusyoung/
-    GPXConverter/archive/0.4.tar.gz""",
+    description=gpx.__summary__,
 
-    author="Linus Yang",
-    author_email="linusyoungrice@gmail.com",
+    license=gpx.__license__,
+
+    url=gpx.__uri__,
+
+    download_url=gpx.__download_url__,
+
+    author=gpx.__author__,
+
+    author_email=gpx.__email__,
 
     classifiers=[
         "Natural Language :: English",
