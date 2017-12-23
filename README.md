@@ -2,11 +2,10 @@
 
 ## How to use
 
-Run converter.py with input file(.gpx)
 ```
-python ./converter.py -i [input file]
+pip install gpxconverter
 
-python ./converter.py -i [input file] -o [output file]
+gpxconverter -i [input file] -o [output file]
 
 ```
 *Note: 'csv' extention is not required for output filename.*

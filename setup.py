@@ -2,14 +2,14 @@ from setuptools import setup
 
 setup(
     name="gpxconverter",
-    version="0.3",
+    version="0.4",
 
     description="gpx to csv converter",
 
     license="MIT",
     url="https://github.com/linusyoung/GPXConverter",
     download_url="""https://github.com/linusyoung/
-    GPXConverter/archive/0.3.tar.gz""",
+    GPXConverter/archive/0.4.tar.gz""",
 
     author="Linus Yang",
     author_email="linusyoungrice@gmail.com",
