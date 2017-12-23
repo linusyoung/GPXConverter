@@ -30,9 +30,7 @@ def convert(argv):
             outputfile = arg
 
     base_path = os.getcwd()
-    print(base_path)
     xml_file = os.path.join(base_path, inputfile)
-    print(xml_file)
     if os.path.isfile(xml_file):
         writeOutput(inputfile, outputfile, xml_file)
     else:
