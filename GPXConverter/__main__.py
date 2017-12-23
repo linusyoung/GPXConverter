@@ -8,7 +8,11 @@ import csv
 import re
 
 
-def main(argv):
+def main():
+    convert(sys.argv[1:])
+
+
+def convert(argv):
     inputfile = ''
     outputfile = ''
     try:
@@ -25,15 +29,15 @@ def main(argv):
         elif opt in ("-o", "--ofile"):
             outputfile = arg
 
-    base_path = os.path.dirname(os.path.realpath(__file__))
-
+    base_path = os.getcwd()
+    print(base_path)
     xml_file = os.path.join(base_path, inputfile)
-
+    print(xml_file)
     if os.path.isfile(xml_file):
         writeOutput(inputfile, outputfile, xml_file)
     else:
-        print inputfile + """ does not exist.
-         Please check file name and try again!"""
+        print(inputfile +
+              """ does not exist.Please check file name and try again!""")
         sys.exit()
 
 
@@ -82,4 +86,4 @@ def getHeader(elements):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit(main())
