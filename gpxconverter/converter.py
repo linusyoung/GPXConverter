@@ -56,7 +56,7 @@ def _write_output(inputfile, outputfile, xml_file):
                 values.append(child.attrib['lon'])
                 elements = child.getchildren()
                 if head_empty:
-                    header = __getHeader(elements)
+                    header = _get_header(elements)
                     fieldnames.extend(header)
                     writer = csv.DictWriter(csv_file, fieldnames)
                     writer.writeheader()
@@ -71,7 +71,7 @@ def _write_output(inputfile, outputfile, xml_file):
           str(row_count) + ' record(s).')
 
 
-def _getHeader(elements):
+def _get_header(elements):
     _header = []
     for element in elements:
         _header.append(re.sub(r'^{.*?}', '', element.tag))
