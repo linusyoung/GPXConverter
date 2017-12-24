@@ -27,14 +27,14 @@ def convert(argv):
     base_path = os.getcwd()
     xml_file = os.path.join(base_path, inputfile)
     if os.path.isfile(xml_file):
-        __write_output(inputfile, outputfile, xml_file)
+        _write_output(inputfile, outputfile, xml_file)
     else:
         print(inputfile +
               """ does not exist.Please check file name and try again!""")
         sys.exit()
 
 
-def __write_output(inputfile, outputfile, xml_file):
+def _write_output(inputfile, outputfile, xml_file):
     row_count = 0  # count records
     ext_index = re.search(r'\.', inputfile[::-1])
 
@@ -71,8 +71,8 @@ def __write_output(inputfile, outputfile, xml_file):
           str(row_count) + ' record(s).')
 
 
-def __getHeader(elements):
-    header = []
+def _getHeader(elements):
+    _header = []
     for element in elements:
-        header.append(re.sub(r'^{.*?}', '', element.tag))
-    return header
+        _header.append(re.sub(r'^{.*?}', '', element.tag))
+    return _header
