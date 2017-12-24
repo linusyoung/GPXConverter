@@ -27,14 +27,14 @@ def convert(argv):
     base_path = os.getcwd()
     xml_file = os.path.join(base_path, inputfile)
     if os.path.isfile(xml_file):
-        writeOutput(inputfile, outputfile, xml_file)
+        __write_output(inputfile, outputfile, xml_file)
     else:
         print(inputfile +
               """ does not exist.Please check file name and try again!""")
         sys.exit()
 
 
-def writeOutput(inputfile, outputfile, xml_file):
+def __write_output(inputfile, outputfile, xml_file):
     row_count = 0  # count records
     ext_index = re.search(r'\.', inputfile[::-1])
 
@@ -56,7 +56,7 @@ def writeOutput(inputfile, outputfile, xml_file):
                 values.append(child.attrib['lon'])
                 elements = child.getchildren()
                 if head_empty:
-                    header = getHeader(elements)
+                    header = __getHeader(elements)
                     fieldnames.extend(header)
                     writer = csv.DictWriter(csv_file, fieldnames)
                     writer.writeheader()
@@ -71,7 +71,7 @@ def writeOutput(inputfile, outputfile, xml_file):
           str(row_count) + ' record(s).')
 
 
-def getHeader(elements):
+def __getHeader(elements):
     header = []
     for element in elements:
         header.append(re.sub(r'^{.*?}', '', element.tag))
