@@ -72,7 +72,7 @@ def _write_output(inputfile, outputfile, xml_file):
 
 
 def _get_header(elements):
-    _header = []
+    header = []
     for element in elements:
-        _header.append(re.sub(r'^{.*?}', '', element.tag))
-    return _header
+        header.append(re.sub(r'^{.*?}', '', element.tag))
+    return header
