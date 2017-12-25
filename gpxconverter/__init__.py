@@ -5,11 +5,12 @@ __all__ = (
 
 __title__ = "gpxconverter"
 
-__summary__ = "gpx to csv converter"
+__summary__ = ("gpx to csv converter. it supports waypoint elements except "
+               "extensions. Values in extensions will be ignored.")
 
 __uri__ = "https://github.com/linusyoung/GPXConverter"
 
-__version__ = "0.5"
+__version__ = "0.6"
 
 __download_url__ = ("https://github.com/linusyoung/GPXConverter/archive/" +
                     __version__ + ".tar.gz")
