@@ -13,6 +13,10 @@ $gpxconverter -i <input file> -o <output file>
 ## Output
 It will extract waypoints information from input file to a csv file.
 
+Waypoints will be saved as [output file]\_wpt.csv
+
+Route will be saved as [output file]\_rte.csv
+
 ## XSD reference documents
 GPX XSD is available at the below link.
 
