@@ -12,7 +12,7 @@ def convert(argv):
     try:
         opts, args = getopt.getopt(argv, 'hi:o:', ['ifile=', 'ofile='])
     except getopt.GetoptError:
-        print 'test.py -i <inputfile> -o <outputfile>'
+        print 'gpxconvert -i <inputfile> -o <outputfile>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
@@ -35,44 +35,86 @@ def convert(argv):
 
 
 def _write_output(inputfile, outputfile, xml_file):
-    row_count = 0  # count records
+
+    tree = et.parse(xml_file)
+    root = tree.getroot()
+    tags = []
+    for child in root:
+        child_tag = _get_tag(child)
+        if child_tag != 'metadata':
+            if child_tag not in tags:
+                tags.append(child_tag)
+
+    # row_count = 0  # count records
     ext_index = re.search(r'\.', inputfile[::-1])
 
     if outputfile:
-        output_csv_file = outputfile + '.csv'
+        output_csv_file = outputfile
     else:
-        output_csv_file = inputfile[: -(ext_index.start() + 1)] + '.csv'
+        output_csv_file = inputfile[: -(ext_index.start() + 1)]
 
-    with open(output_csv_file, 'w') as csv_file:
-        fieldnames = ['lat', 'lon']
-        tree = et.parse(xml_file)
-        root = tree.getroot()
-        head_empty = True
+    outputfiles = {}
+    csv_headers = {}
+    record_count = {}
+    for tag in tags:
+        outputfiles[tag] = output_csv_file + '_' + tag + '.csv'
+        csv_headers[tag] = False
+        record_count[tag] = 0
 
-        for child in root:
-            if re.search('wpt', child.tag):
-                values = []
-                values.append(child.attrib['lat'])
-                values.append(child.attrib['lon'])
-                elements = child.getchildren()
-                if head_empty:
+    for child in root:
+        child_tag = _get_tag(child)
+        if child_tag == 'wpt':
+            waypoint = child
+            elements = waypoint.getchildren()
+            if not csv_headers['wpt']:
+                with open(outputfiles[child_tag], 'w') as csv_file:
+                    fieldnames = ['lat', 'lon']
                     header = _get_header(elements)
                     fieldnames.extend(header)
                     writer = csv.DictWriter(csv_file, fieldnames)
                     writer.writeheader()
-                    head_empty = False
-                for element in elements:
-                    values.append(element.text)
-                row_value = dict(zip(fieldnames, values))
+                    csv_headers['wpt'] = True
+            with open(outputfiles[child_tag], 'a') as csv_file:
+                row_value = _parse_waypoints(waypoint, elements, fieldnames)
+                writer = csv.DictWriter(csv_file, fieldnames)
                 writer.writerow(row_value)
-                row_count += 1
 
-    print(output_csv_file + ' is created with ' +
-          str(row_count) + ' record(s).')
+            record_count[child_tag] += 1
+
+    for tag in tags:
+        print(outputfiles[tag] + ' is created with ' +
+              str(record_count[tag]) + ' record(s).')
 
 
 def _get_header(elements):
     header = []
     for element in elements:
-        header.append(re.sub(r'^{.*?}', '', element.tag))
+        header.append(_get_tag(element))
+
     return header
+
+
+def _get_tag(element):
+    return re.sub(r'^{.*?}', '', element.tag)
+
+
+def _parse_waypoints(waypoint, elements, fieldnames):
+    values = []
+    values.append(waypoint.attrib['lat'])
+    values.append(waypoint.attrib['lon'])
+
+    for element in elements:
+        elemnet_tag = _get_tag(element)
+        if elemnet_tag == 'link':
+            if element.text:
+                link_value = '[' + element.text + ']'
+            else:
+                link_value = '[None]'
+            link_value += '(' + element.attrib['href'] + ')'
+            values.append(link_value)
+        elif elemnet_tag == 'extensions':
+            values.append('not support')
+        else:
+            values.append(element.text)
+
+    return dict(zip(fieldnames, values))
