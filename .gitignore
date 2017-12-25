@@ -12,4 +12,5 @@ var
 sdist
 develop-eggs
 .installed.cfg
+.sh
 _build
