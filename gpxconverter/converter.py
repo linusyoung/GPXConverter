@@ -104,6 +104,17 @@ def _parse_waypoints(waypoint, elements, fieldnames):
     values.append(waypoint.attrib['lon'])
 
     for element in elements:
-        values.append(element.text)
+        elemnet_tag = _get_tag(element)
+        if elemnet_tag == 'link':
+            if element.text:
+                link_value = '[' + element.text + ']'
+            else:
+                link_value = '[None]'
+            link_value += '(' + element.attrib['href'] + ')'
+            values.append(link_value)
+        elif elemnet_tag == 'extensions':
+            values.append('not support')
+        else:
+            values.append(element.text)
 
     return dict(zip(fieldnames, values))
