@@ -10,7 +10,7 @@ $gpxconverter -i <input file> -o <output file>
 ```
 *Note: 'csv' extension is not required for output filename.*
 
-[Install pip isf necessary](https://pip.pypa.io/en/latest/installing/)
+[Install pip if necessary](https://pip.pypa.io/en/latest/installing/)
 
 ## Output
 It will extract waypoints information from input file to a csv file.
