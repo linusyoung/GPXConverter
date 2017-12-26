@@ -103,6 +103,8 @@ def _write_output(inputfile, outputfile, xml_file):
                     writer.writeheader()
                     csv_headers['rte'] = True
             with open(outputfiles[child_tag], 'a') as csv_file:
+                # //TODO: return a list of dict of row values
+                # write each
                 record_count[tag] = _output_routes(
                                                    route, elements,
                                                    waypoints_header,
@@ -150,7 +152,7 @@ def _parse_waypoints(waypoint, elements, fieldnames):
             values.append(element.text)
     return dict(zip(fieldnames, values))
 
-
+# //TODO: return a list of dict values
 def _output_routes(route, elements, waypoints_header, fieldnames, csv_file):
     values = []
     row_count = 0
