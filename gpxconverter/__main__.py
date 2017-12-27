@@ -2,7 +2,7 @@
 
 import sys
 import argparse
-from gpxconverter.converter import convert
+from converter import convert
 
 
 def main():
