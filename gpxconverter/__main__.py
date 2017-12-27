@@ -6,6 +6,7 @@ from gpxconverter.converter import convert
 
 
 def main():
+    # //TODO: update argv parse to argparse
     convert(sys.argv[1:])
 
 
