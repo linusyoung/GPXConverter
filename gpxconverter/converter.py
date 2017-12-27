@@ -1,29 +1,29 @@
-import getopt
+# import getopt
 import xml.etree.ElementTree as et
 import csv
 import re
 import os
 import sys
 
-# //TODO: take cl arguments.
-def convert(argv):
-    inputfile = ''
-    outputfile = ''
-    try:
-        opts, args = getopt.getopt(argv, 'hi:o:', ['ifile=', 'ofile='])
-    except getopt.GetoptError:
-        print 'gpxconvert -i <inputfile> -o <outputfile>'
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            print 'gpxconvert -i <inputfile> -o <outputfile>'
-            print 'for more help information. please visit github site.'
-            sys.exit()
-        elif opt in ('-i', '--ifile'):
-            inputfile = arg
-        elif opt in ('-o', '--ofile'):
-            outputfile = arg
 
+def convert(i, o):
+    # try:
+    #     opts, args = getopt.getopt(argv, 'hi:o:', ['ifile=', 'ofile='])
+    # except getopt.GetoptError:
+    #     print 'gpxconvert -i <inputfile> -o <outputfile>'
+    #     sys.exit(2)
+    # for opt, arg in opts:
+    #     if opt == '-h':
+    #         print 'gpxconvert -i <inputfile> -o <outputfile>'
+    #         print 'for more help information. please visit github site.'
+    #         sys.exit()
+    #     elif opt in ('-i', '--ifile'):
+    #         inputfile = arg
+    #     elif opt in ('-o', '--ofile'):
+    #         outputfile = arg
+
+    inputfile = i[0]
+    outputfile = o
     base_path = os.getcwd()
     xml_file = os.path.join(base_path, inputfile)
     if os.path.isfile(xml_file):
@@ -151,6 +151,7 @@ def _parse_waypoints(waypoint, elements, fieldnames):
         else:
             values.append(element.text)
     return dict(zip(fieldnames, values))
+
 
 # //TODO: return a list of dict values
 def _output_routes(route, elements, waypoints_header, fieldnames, csv_file):
