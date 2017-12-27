@@ -1,4 +1,3 @@
-# import getopt
 import xml.etree.ElementTree as et
 import csv
 import re
@@ -7,21 +6,6 @@ import sys
 
 
 def convert(i, o):
-    # try:
-    #     opts, args = getopt.getopt(argv, 'hi:o:', ['ifile=', 'ofile='])
-    # except getopt.GetoptError:
-    #     print 'gpxconvert -i <inputfile> -o <outputfile>'
-    #     sys.exit(2)
-    # for opt, arg in opts:
-    #     if opt == '-h':
-    #         print 'gpxconvert -i <inputfile> -o <outputfile>'
-    #         print 'for more help information. please visit github site.'
-    #         sys.exit()
-    #     elif opt in ('-i', '--ifile'):
-    #         inputfile = arg
-    #     elif opt in ('-o', '--ofile'):
-    #         outputfile = arg
-
     inputfile = i[0]
     outputfile = o
     base_path = os.getcwd()
