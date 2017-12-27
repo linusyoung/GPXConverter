@@ -1,12 +1,30 @@
 #!/usr/bin/env python
 
 import sys
-
+import argparse
 from gpxconverter.converter import convert
 
 
 def main():
-    convert(sys.argv[1:])
+    args = sys.argv[1:]
+    parser = argparse.ArgumentParser(prog='gpxconvert')
+    parser.add_argument(
+        '-i',
+        nargs=1,
+        metavar='file path',
+        help='input file',
+    )
+    parser.add_argument(
+        '-o',
+        required=False,
+        metavar='output file name',
+        help='out file name without csv extension',
+    )
+    args = parser.parse_args(args)
+    try:
+        convert(**vars(args))
+    except Exception as exc:
+        print exc
 
 
 if __name__ == "__main__":
