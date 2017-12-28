@@ -1,5 +1,5 @@
 # GPXConverter
-
+[![Build Status](https://travis-ci.org/linusyoung/GPXConverter.svg?branch=master)](https://travis-ci.org/linusyoung/GPXConverter)
 ## How to use
 
 ```
