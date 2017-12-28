@@ -20,3 +20,6 @@ script:
 
 after_success:
   - codecov --env TRAVIS_OS_NAME,TOXENV
+
+notifications:
+    email: false
