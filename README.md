@@ -1,5 +1,6 @@
 # GPXConverter
 [![Build Status](https://travis-ci.org/linusyoung/GPXConverter.svg?branch=master)](https://travis-ci.org/linusyoung/GPXConverter)
+[![License][License-Badge]][License-Badge-URL]
 ## How to use
 
 ```
@@ -23,3 +24,6 @@ Route will be saved as [output file]\_rte.csv
 GPX XSD is available at the below link.
 
 [http://www.topografix.com/GPX/1/1](http://www.topografix.com/gpx/1/1/gpx.xsd)
+
+[License-Badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[License-Badge-URL]: ./LICENSE
