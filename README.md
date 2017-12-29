@@ -1,5 +1,5 @@
 # GPXConverter
-[![Build Status](https://travis-ci.org/linusyoung/GPXConverter.svg?branch=master)](https://travis-ci.org/linusyoung/GPXConverter)
+[![Build Status][Build-Badge]][Build-Badge-URL]
 [![License][License-Badge]][License-Badge-URL]
 ## How to use
 
@@ -25,5 +25,7 @@ GPX XSD is available at the below link.
 
 [http://www.topografix.com/GPX/1/1](http://www.topografix.com/gpx/1/1/gpx.xsd)
 
+[Build-Badge]:https://travis-ci.org/linusyoung/GPXConverter.svg?branch=master
+[Build-Badge-URL]:https://travis-ci.org/linusyoung/GPXConverter
 [License-Badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[License-Badge-URL]: ./LICENSE
+[License-Badge-URL]: ./LICENSE.txt
