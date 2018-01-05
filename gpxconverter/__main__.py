@@ -24,7 +24,7 @@ def main():
     try:
         convert(**vars(args))
     except Exception as exc:
-        print exc
+        print (exc)
 
 
 if __name__ == "__main__":
