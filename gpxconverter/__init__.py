@@ -10,7 +10,7 @@ __summary__ = ("gpx to csv converter. it supports waypoint elements except "
 
 __uri__ = "https://github.com/linusyoung/GPXConverter"
 
-__version__ = "0.7"
+__version__ = "0.8"
 
 __download_url__ = ("https://github.com/linusyoung/GPXConverter/archive/" +
                     __version__ + ".tar.gz")
