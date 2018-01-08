@@ -4,7 +4,6 @@ import re
 import os
 import sys
 
-
 def convert(i, o):
     inputfile = i[0]
     outputfile = o
@@ -16,7 +15,6 @@ def convert(i, o):
         print(inputfile +
               """ does not exist.Please check file name and try again!""")
         sys.exit()
-
 
 def _write_output(inputfile, outputfile, xml_file):
 
