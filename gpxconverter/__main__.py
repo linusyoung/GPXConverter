@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import argparse
-from converter import convert
+from .converter import convert
 
 
 def main():
