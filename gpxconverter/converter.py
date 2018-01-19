@@ -52,14 +52,14 @@ def _write_output(inputfile, outputfile, xml_file):
             waypoint = child
             elements = waypoint.getchildren()
             if not csv_headers['wpt']:
-                with open(outputfiles[child_tag], 'w') as csv_file:
+                with open(outputfiles[child_tag], 'w', newline='') as csv_file:
                     outputfile_header = latlon_header
                     wpt_header = _get_header(elements)
                     outputfile_header.extend(wpt_header)
                     writer = csv.DictWriter(csv_file, outputfile_header)
                     writer.writeheader()
                     csv_headers['wpt'] = True
-            with open(outputfiles[child_tag], 'a') as csv_file:
+            with open(outputfiles[child_tag], 'a', newline='') as csv_file:
                 row_value = _parse_waypoints(waypoint, elements,
                                              outputfile_header)
                 writer = csv.DictWriter(csv_file, outputfile_header)

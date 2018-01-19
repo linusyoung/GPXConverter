@@ -2,7 +2,7 @@
 
 import sys
 import argparse
-from .converter import convert
+from converter import convert
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     try:
         convert(**vars(args))
     except Exception as exc:
-        print (exc)
+        print(exc)
 
 
 if __name__ == "__main__":

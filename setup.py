@@ -35,6 +35,8 @@ setup(
         "Programming Language :: Python :: 3.6",
     ],
 
+    python_requires='>=3',
+
     packages=["gpxconverter"],
 
     entry_points={
